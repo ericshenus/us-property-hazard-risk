@@ -14,8 +14,6 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-    ports:
-      - "${MCP_SERVER_PORT:-8000}:8000"
     environment:
       MCP_HOST: 0.0.0.0
       MCP_PORT: 8000
