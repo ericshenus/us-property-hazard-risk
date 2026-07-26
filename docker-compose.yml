@@ -1,0 +1,23 @@
+networks:
+  zipquote-net:
+    external: true
+    name: zipquote_zipquote-net
+
+services:
+  mcp-server:
+    build: .
+    restart: always
+    mem_limit: 256m
+    cpus: 0.5
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    ports:
+      - "${MCP_SERVER_PORT:-8000}:8000"
+    environment:
+      MCP_HOST: 0.0.0.0
+      MCP_PORT: 8000
+    networks:
+      - zipquote-net
