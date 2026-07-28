@@ -2,6 +2,7 @@ import os
 
 from mcp.server.fastmcp import FastMCP
 from mcp.types import ToolAnnotations
+from starlette.responses import PlainTextResponse
 
 from models import HazardAssessment
 from risk import assess_address
@@ -18,6 +19,10 @@ mcp = FastMCP(
     stateless_http=True,
 )
 
+@mcp.custom_route("/.well-known/openai-apps-challenge", methods=["GET"])
+async def openai_apps_challenge(request):
+    token = os.getenv("OPENAI_APPS_CHALLENGE_TOKEN", "")
+    return PlainTextResponse(token)
 
 @mcp.tool(
     title="Assess Property Hazard Risk",

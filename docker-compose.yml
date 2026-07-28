@@ -17,5 +17,6 @@ services:
     environment:
       MCP_HOST: 0.0.0.0
       MCP_PORT: 8000
+      OPENAI_APPS_CHALLENGE_TOKEN: TwPNKKx9F5AG7FnejR3SPD6N40EqJjx8F-D_ohS1tbs
     networks:
       - zipquote-net
